@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using EF_AssetTracking;
+using System.Globalization;
 using System.Numerics;
 
 Console.WriteLine("Hello, World!");
@@ -27,8 +28,13 @@ asset1.PurchaseDate = Convert.ToDateTime("2020-10-02");
 asset1.Currency = "SEK";
 asset1.Price = 588;
 
-// Save asset to the database
+// Save an asset to the database
 
 Context.Assets.Add(asset1);
 Context.SaveChanges();
+
+// Read an assets form the database
+List<Asset> AssetsTable = Context.Assets.ToList();
+
+foreach (Asset a in AssetsTable) Console.WriteLine(a.Model);
 
